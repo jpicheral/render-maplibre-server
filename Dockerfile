@@ -22,7 +22,8 @@ RUN apt-get update && apt-get install -y \
 WORKDIR /app
 
 COPY package*.json ./
-RUN npm install
+RUN npm install || (cat /root/.npm/_logs/* && false)
+
 
 COPY . .
 
